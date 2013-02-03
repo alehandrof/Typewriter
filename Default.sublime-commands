@@ -1,0 +1,7 @@
+[
+	{
+		"caption": "Typewriter: Toggle On/Off",
+		"command": "toggle_setting",
+		"args": { "setting": "typewriter_mode" }
+	}
+]

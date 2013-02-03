@@ -1,0 +1,3 @@
+[
+	{ "keys": ["super+t"], "command": "toggle_setting", "args": { "setting": "typewriter_mode" } }
+]
