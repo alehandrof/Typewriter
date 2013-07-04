@@ -59,6 +59,15 @@
 	/* select_all */
 	{ "keys": ["ctrl+a"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_all
 
+	/* expand_selection & move_to brackets */
+	{ "keys": ["ctrl+l"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // expand_selection
+	{ "keys": ["ctrl+d"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // find_under_expand
+	{ "keys": ["ctrl+shift+space"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // expand_selection
+	{ "keys": ["ctrl+shift+m"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // expand_selection
+	{ "keys": ["ctrl+m"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // move_to
+	{ "keys": ["ctrl+shift+j"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // expand_selection
+	{ "keys": ["ctrl+shift+a"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // expand_selection
+
 	/* _misspelling */
 	{ "keys": ["ctrl+f6"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // next_misspelling
 	{ "keys": ["ctrl+shift+f6"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // prev_misspelling
@@ -68,5 +77,15 @@
 	{ "keys": ["ctrl+shift+i"], "command": "do_nothing", "context": [ { "key":" setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // incremental_find
 	{ "keys": ["ctrl+f"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // find
 	{ "keys": ["ctrl+h"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // replace
-	{ "keys": ["ctrl+shift+f"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] } // find_in_files
+	{ "keys": ["ctrl+shift+f"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // find_in_files
+
+	/* bookmarks */
+	{ "keys": ["f2"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // next_bookmark
+	{ "keys": ["shift+f2"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // prev_bookmark
+	{ "keys": ["alt+f2"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_all_bookmarks
+
+	/* marks */
+	{ "keys": ["ctrl+k", "ctrl+a"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_to_mark
+	{ "keys": ["ctrl+k", "ctrl+w"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // delete_to_mark
+	{ "keys": ["ctrl+k", "ctrl+x"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] } // swap_with_mark
 ]
