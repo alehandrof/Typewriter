@@ -1,7 +1,12 @@
 [
 	{
-		"caption": "Typewriter: Toggle On/Off",
+		"caption": "Typewriter: Scrolling (Toggle)",
 		"command": "toggle_setting",
-		"args": { "setting": "typewriter_mode" }
+		"args": { "setting": "typewriter_scrolling" }
+	},
+	{
+		"caption": "Typewriter: Typing (Toggle)",
+		"command": "toggle_setting",
+		"args": { "setting": "typewriter_typing" }
 	}
 ]
