@@ -1,5 +1,10 @@
 [
 	{
+		"caption": "Typewriter: Both Modes (Toggle)",
+		"command": "run_macro_file",
+		"args": { "file": "res://Packages/Typewriter/Typewriter Mode.sublime-macro" }
+	},
+	{
 		"caption": "Typewriter: Scrolling (Toggle)",
 		"command": "toggle_setting",
 		"args": { "setting": "typewriter_scrolling" }
