@@ -1,3 +1,5 @@
 {
-	"typewriter_mode" : true
+	"auto_match_enabled":   false,
+	"typewriter_scrolling": true,
+	"typewriter_typing":    true
 }
