@@ -1,21 +1,4 @@
 [
-	/**
-	 * Disable all keybindings that trigger all (?) commands that move the cursor.
-	 *
-	 * Currently included are:
-	 * - undo & redo
-	 * - paste
-	 * - move
-	 * - move_to
-	 * - select_lines
-	 * - scroll_lines
-	 * - select_all
-	 * - *_misspelling
-	 * - show_panel (find, etc.)
-	 *
-	 * Each line has a comment at the end which describes which command is being overridden.
-	 */
-
 	/* undo & redo */
 	{ "keys": ["ctrl+z"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // undo
 	{ "keys": ["ctrl+shift+z"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // redo
@@ -48,10 +31,6 @@
 	{ "keys": ["alt+right"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // move
 	{ "keys": ["alt+shift+left"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // move
 	{ "keys": ["alt+shift+right"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // move
-
-	/* select lines (windows) */
-	{ "keys": ["ctrl+alt+up"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_lines
-	{ "keys": ["ctrl+alt+down"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_lines
 
 	/* select lines (linux) */
 	{ "keys": ["alt+shift+up"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_typing", "operator": "equal", "operand": true } ] }, // select_lines
