@@ -38,7 +38,8 @@ The typewriter modes are controlled by the `typewriter_mode_scrolling` and `type
 
 ## Changelog & History
 
-- 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_mode_scrolling`.
+- 0.2.1 - Renamed settings to `typewriter_mode_scrolling` and `typewriter_mode_typewriter` so they won't conflict with BufferScroll.
+- 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_scrolling`.
 - 0.1 - Initial release. Typewriter was created upon [my request](http://www.sublimetext.com/forum/viewtopic.php?f=6&t=4806) by [castles\_made\_of\_sand](https://github.com/sublimator/) & [facelessuser](https://github.com/facelessuser).
 
 
