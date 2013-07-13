@@ -26,7 +26,7 @@ Clone the repository in your Packages folder: `git clone https://github.com/aleh
 
 ## Usage
 
-The typewriter modes are controlled by the `typewriter_scrolling` and `typewriter_typing` settings. Setting them to `true` enables the modes.
+The typewriter modes are controlled by the `typewriter_mode_scrolling` and `typewriter_mode_typing` settings. Setting them to `true` enables the modes.
 
 - See the example files provided for ideas on how to use these in settings & keymap files.
 - You can toggle the modes via the Command Palette. (Just search for `typewriter`.)
@@ -38,7 +38,7 @@ The typewriter modes are controlled by the `typewriter_scrolling` and `typewrite
 
 ## Changelog & History
 
-- 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_scrolling`.
+- 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_mode_scrolling`.
 - 0.1 - Initial release. Typewriter was created upon [my request](http://www.sublimetext.com/forum/viewtopic.php?f=6&t=4806) by [castles\_made\_of\_sand](https://github.com/sublimator/) & [facelessuser](https://github.com/facelessuser).
 
 

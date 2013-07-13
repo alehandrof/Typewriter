@@ -7,7 +7,7 @@ import sublime, sublime_plugin
 
 class TypewriterScrolling(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
-        if view.settings().get('typewriter_scrolling') == 1:
+        if view.settings().get('typewriter_mode_scrolling') == 1:
             sel = view.sel()
             region = sel[0] if len(sel) == 1 else None
             if region != None:
