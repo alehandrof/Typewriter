@@ -1,0 +1,339 @@
+{
+	"name": "Markdown (Typewriter)",
+	"author": "Alex Armstrong (@alehandrof)",
+	"scopeName": "text.html.markdown",
+	"fileTypes": [
+		/**
+		 * Source: http://superuser.com/questions/249436/file-extension-for-markdown-files
+		 */
+		".markdown",
+		".md",
+		".mdown",
+		".mdwn",
+		".mkd",
+		".mkdn",
+		".text",
+		".txt",
+	],
+	"patterns": [
+		/**
+		 * Outside the repo (i.e., block-level):
+		 * - Headings
+		 * - Lists -> markup.list
+		 * 		- Ordered -> .numbered
+		 * 		- Unordered -> .unnumbered
+		 * 		- Definition
+		 * - Blockquotes
+		 * - Ruler -> meta.separator.markdown
+		 * - Code blocks (fenced or indented)
+		 * - Tables -> markup/meta.table.multimarkdown
+		 * - Link references -> meta.link.reference.def.markdown
+		 * - Paragraphs -> meta.paragraph.markdown
+		 */
+		{ "include": "#block" },
+		{ "include": "#inline" },
+	],
+	"repository": {
+
+		/* BLOCK Elements - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+		"block": {
+			"patterns": [
+				{ "include": "#code" },
+				{ "include": "#heading" },
+				{ "include": "#horizontal-rule"},
+				{ "include": "#blockquote" },
+				{ "include": "#list" },
+				{ "include": "#link-definition" },
+				{ "include": "#paragraph"},
+			]
+		},
+
+		/* BLOCK: Code */
+		"code": {
+			"patterns": [
+				{ "include": "#fenced-code" },
+				{ "include": "#indented-code" },
+			]
+		},
+		"fenced-code": {
+			/**
+			 * Support: backtick & tiled, optional syntax definition
+			 * http://johnmacfarlane.net/pandoc/README.html#fenced-code-blocks
+			 */
+			"name": "markup.raw.block.fenced.markdown",
+			"begin": "^(`{3,}|~{3,})(\\S*)?\\s*$",
+			"captures": {
+				"1": { "name": "punctuation.definition.raw.block.fenced.markdown" },
+				"2": { "name": "variable.syntax.raw.block.fenced.markdown" },
+			},
+			"end": "(\\1)(?=\\n)",
+		},
+		"indented-code": {
+			"name": "markup.raw.block.indented.markdown",
+			"begin": "^([ ]{4}|\\t)",
+			"end": "$",
+		},
+
+		/* BLOCK: Heading */
+		"heading": {
+			"patterns": [
+				// { "include": "#setex-heading" },
+				{ "include": "#atx-heading" },
+			]
+		},
+		"atx-heading": {
+			"name": "markup.heading.markdown",
+			"begin": "^(#{1,6})\\s+(?=\\S)",
+			"captures": {
+				"1": { "name": "punctuation.definition.heading.markdown" },
+			},
+			"end": "(\\s+#+)?(?=\\n)",
+			"patterns": [ { "include": "#inline" }, ]
+		},
+
+		/* BLOCK: List */
+		"list": {
+			"patterns": [
+				{ "include": "#unordered-list" },
+				{ "include": "#ordered-list" },
+			]
+		},
+		"unordered-list": {
+			/**
+			 * Support: underline, hyphen, asterisk
+			 */
+			"name": "markup.list.unordered.markdown",
+			"begin": "^\\s*([-\\+\\*])\\s+",
+			"captures": {
+				"1": { "name": "punctuation.definition.list.unordered.markdown" },
+			},
+			"end": "(\\n|$)",
+			"patterns": [ { "include": "#inline" }, ]
+		},
+		"ordered-list": {
+			/**
+			 * Support: ordered and "numbered example" lists
+			 * http://johnmacfarlane.net/pandoc/README.html#ordered-lists
+			 */
+			"name": "markup.list.ordered.markdown",
+			"begin": "^\\s*(#\\.|(\\d+|[A-z]|[IVXLCDM]+|[ivxlcdm]+)[\\.\\)]|\\((\\d+|[A-z]|[IVXLCDM]+|[ivxlcdm]+)\\)|\\(\\@[\\w\\-]*\\))\\s+",
+			"captures": {
+				"1": { "name": "punctuation.definition.list.ordered.markdown" },
+			},
+			"end": "(\\n|$)",
+			"patterns": [ { "include": "#inline" }, ]
+		},
+
+		/* BLOCK: Horizontal Rule */
+		"horizontal-rule": {
+			"name": "meta.separator.markdown",
+			"match": "^(\\s*[_\\-\\*]\\s*){3,}$",
+			"comment": "*** or --- or ___ or somesuch",
+		},
+
+		/* BLOCK: Link Definition */
+		"link-definition": {
+			"name": "meta.link.definition.markdown",
+			"match": "^[ ]{0,3}(\\[)(.*?)(\\]:)\\s+(\\S+)\\s*([\"'\\(].*?[\"'\\)])?",
+			"captures": {
+				"1": { "name": "punctuation.definition.link.inline.markdown" },
+				"2": { "name": "markup.underline.link.reference" },
+				"3": { "name": "punctuation.definition.link.inline.markdown" },
+				"4": { "name": "markup.underline.link.url.markdown" },
+				"5": { "name": "string.other.link.title.markdown" },
+			},
+		},
+
+		/* BLOCK: Blockquote */
+		"blockquote": {
+			"name": "markup.quote.markdown",
+			"begin": "^[ ]{0,3}(>)\\s*",
+			"captures": {
+				"1": { "name": "punctuation.definition.markup.quote.markdown" },
+			},
+			"end": "(\\n|$)",
+			"patterns": [ { "include": "#inline" }, ]
+		},
+
+		/* BLOCK: Paragraph */
+		"paragraph": {
+			"name": "meta.paragraph.markdown",
+			"begin": "^",
+			"end": "\\n",
+			"patterns": [ { "include": "#inline" }, ]
+		},
+
+		/* INLINE Elements - - - - - - - - - - - - - - - - - - - - - */
+
+		"bold":  {
+			"comment": "**bold** or __strong__",
+			"name": "markup.bold.markdown",
+			// "match": "(\\*\\*|__)(.*?)(\\1)",
+			"begin": "(\\*\\*|__)(.*?)",
+			"end": "(\\1)",
+			"captures": {
+				"1": { "name": "punctuation.definition.bold.markdown" },
+			},
+			"patterns": [ { "include": "#inline" } ],
+		},
+		"italic": {
+			"comment": "*italic* or _strong_",
+			"name": "markup.italic.markdown",
+			// "match": "(\\*|_)(.*?)(\\1)",
+			"begin": "(\\*|_)(.*?)",
+			"end": "(\\1)",
+			"captures": {
+				"1": { "name": "punctuation.definition.italic.markdown" },
+			},
+			"patterns": [ { "include": "#inline" } ],
+		},
+		"inline-link": { /* includes images */
+			"name": "meta.link.inline.markdown",
+			"match": "(!?\\[)(.*?)(\\]\\()(\\S+)\\s*(\".*?\")?\\s*(\\))",
+			"captures": {
+				"1": { "name": "punctuation.definition.link.inline.markdown" },
+				"2": { "name": "string.other.link.inline.markdown" },
+				"3": { "name": "punctuation.definition.link.inline.markdown" },
+				"4": { "name": "markup.underline.link.url.markdown" },
+				"5": { "name": "string.other.link.title.markdown" },
+				"6": { "name": "punctuation.definition.link.inline.markdown" },
+			},
+		},
+		"inline-reference-link": { /* includes images */
+			"name": "meta.link.inline.reference.markdown",
+			"match": "(!?\\[)(.*?)(\\][ ]?\\[)(.*?)(\\])",
+			"captures": {
+				"1": { "name": "punctuation.definition.link.inline.markdown" },
+				"2": { "name": "string.other.link.inline.markdown" },
+				"3": { "name": "punctuation.definition.link.inline.markdown" },
+				"4": { "name": "markup.underline.link.reference.markdown" },
+				"5": { "name": "punctuation.definition.link.inline.markdown" },
+			},
+		},
+		"backslash-escape": {
+			/**
+			 * Support: http://daringfireball.net/projects/markdown/syntax#backslash
+			 */
+			"name": "constant.character.escape.backslash",
+			"match": "\\\\[\\\\`\\*_{}\\[\\]\\(\\)#\\+-\\.!]",
+		},
+		/* Bundles */
+		"etcetera": {
+			"patterns": [
+				/*{
+					"name": "comment tag.structure.markdo",
+					"match": "(?<=^|\\s)(#|@)(added|done|canceled|cancelled)(:[-\\d]+)?(?=\\s|\\n|$)",
+					"comment": "@added:2011-11-11 #done",
+				},*/
+				{
+					"name": "action.markdo",
+					// "begin": "^\\s*([-\\+\\*]\\s+)?(\\[[ ]\\]\\s+)",
+					"begin": "\\G(\\[[ ]\\]\\s+)",
+					"captures": {
+						"1": { "name": "color.orange checkbox.action.markdo" }
+					},
+					// "end": "(?=\\n)",
+					"end": "(?=\\n|$)",
+					"patterns": [
+						{ "include": "#inline" },
+					]
+				},
+				{
+					"name": "comment action.markdo completed.action.markdo",
+					// "begin": "^\\s*([-\\+\\*]\\s+)?(\\[[xX]\\]\\s+)",
+					"begin": "\\G(\\[[xX]\\]\\s+)",
+					"captures": {
+						"1": { "name": "comment checkbox.action.markdo" }
+					},
+					"end": "(?=\\n|$)",
+					// "patterns": [
+					//	{ "include": "#inline" },
+					// ]
+				},
+				{
+					"name": "comment meta.tag.markdo",
+					"match": "(?<=^|\\s)(\\+|x|\\.)([-\\d]+)(?=\\s|\\n|$)",
+					"comment": "+2011-11-11 x2012-12-12",
+				},
+				{
+					"name": "color.red hash.tag.markdo",
+					"match": "(?<=^|\\s)(#)[\\w\\d-]+",
+					"comment": "#important",
+				},
+				{
+					"name": "color.green at.tag.markdo",
+					"match": "(?<=^|\\s)(@)[\\w\\d-]+",
+					"comment": "@work",
+				},
+				{
+					"name": "color.blue markup.underline.link.email.markdown",
+					"match": "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
+					// from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+					"comment": "you@tube.com"
+				},
+				{
+					"name": "color.blue markup.underline.link.url.markdown",
+					"match": "(https?:\\/\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.\\-\\?=&#\\+]*)*\\/?",
+					/**
+					 * from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+					 * - minus support for ` `
+					 * - plus support for `?`, `=`, `&`, `#`, '+'
+					 * - plus escaped `-`
+					 */
+					"comment": "http://youtube.com"
+				},
+				{
+					"name": "color.purple markup.underline.link meta.bracket-link.markdown",
+					"match": "(\\[\\[)(.+?)(\\]\\])",
+					"captures": {
+						"1": { "name": "punctuation.definition.bracket-link.markdown" },
+						"2": { "name": "markup.underline.bracket-link.markdown" },
+						"3": { "name": "punctuation.definition.bracket-link.markdown" }
+					},
+					"comment": "[[Search for this in Goto Anywhere]]"
+				},
+				/**
+				 * START Critic Markup
+				 * Copy & pasted from the official package
+				 */
+				{
+					"comment": "Editorial Substitution",
+					"match": "\\{~~(.*?)~~\\}",
+					"name": "string.substitution"
+				},
+				{
+					"comment": "Editorial Addition",
+					"match": "\\{\\+\\+(.*?)\\+\\+[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}",
+					"name": "string.addition"
+				},
+				{
+					"comment": "Editorial Deletion",
+					"match": "\\{\\-\\-(.*?)\\-\\-[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}",
+					"name": "string.deletion"
+				},
+				{
+					"highlight": "Editorial Highlight",
+					"match": "\\{\\{(.*?)[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}\\}",
+					"name": "string.highlight"
+				},
+				{
+					"comment": "Editorial Mark",
+					"match": "\\{>>(.*?)<<\\}",
+					"name": "string.comment"
+				}
+				/* END Critic Markup */
+			]
+		},
+		"inline": {
+			"patterns": [
+				{ "include": "#backslash-escape" },
+				{ "include": "#bold" },
+				{ "include": "#italic" },
+				{ "include": "#inline-link" },
+				{ "include": "#inline-reference-link" },
+				{ "include": "etcetera" },
+			]
+		},
+	},
+}
