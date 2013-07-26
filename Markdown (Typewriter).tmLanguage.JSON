@@ -95,9 +95,23 @@
 		/* BLOCK: List */
 		"list": {
 			"patterns": [
+				{ "include": "#task-list" },
 				{ "include": "#unordered-list" },
 				{ "include": "#ordered-list" },
 			]
+		},
+		"task-list": {
+			/**
+			 * Support: underline, hyphen, asterisk
+			 */
+			"name": "markup.list.task.markdown",
+			"begin": "^\\s*([-\\+\\*])\\s+(\\[[ xX]\\])",
+			"captures": {
+				"1": { "name": "punctuation.definition.list.task.markdown" },
+				"2": { "name": "punctuation.definition.list.task.checkbox.markdown" },
+			},
+			"end": "(\\n|$)",
+			"patterns": [ { "include": "#inline" }, ]
 		},
 		"unordered-list": {
 			/**
@@ -166,6 +180,20 @@
 
 		/* INLINE Elements - - - - - - - - - - - - - - - - - - - - - */
 
+		"inline": {
+			"patterns": [
+				{ "include": "#backslash-escape" },
+				{ "include": "#inline-code" },
+				{ "include": "#bold" },
+				{ "include": "#italic" },
+				{ "include": "#inline-link" },
+				{ "include": "#inline-reference-link" },
+				{ "include": "#critic-markup" },
+				{ "include": "#etcetera" },
+			]
+		},
+
+		/* INLINE: Bold */
 		"bold":  {
 			"comment": "**bold** or __strong__",
 			"name": "markup.bold.markdown",
@@ -177,6 +205,8 @@
 			},
 			"patterns": [ { "include": "#inline" } ],
 		},
+
+		/* INLINE: Italic */
 		"italic": {
 			"comment": "*italic* or _strong_",
 			"name": "markup.italic.markdown",
@@ -188,7 +218,9 @@
 			},
 			"patterns": [ { "include": "#inline" } ],
 		},
-		"inline-link": { /* includes images */
+
+		/* INLINE: Inline Link, incl. images */
+		"inline-link": {
 			"name": "meta.link.inline.markdown",
 			"match": "(!?\\[)(.*?)(\\]\\()(\\S+)\\s*(\".*?\")?\\s*(\\))",
 			"captures": {
@@ -200,7 +232,9 @@
 				"6": { "name": "punctuation.definition.link.inline.markdown" },
 			},
 		},
-		"inline-reference-link": { /* includes images */
+
+		/* INLINE: Reference Link, incl. images */
+		"inline-reference-link": {
 			"name": "meta.link.inline.reference.markdown",
 			"match": "(!?\\[)(.*?)(\\][ ]?\\[)(.*?)(\\])",
 			"captures": {
@@ -211,6 +245,8 @@
 				"5": { "name": "punctuation.definition.link.inline.markdown" },
 			},
 		},
+
+		/* INLINE: Escape */
 		"backslash-escape": {
 			/**
 			 * Support: http://daringfireball.net/projects/markdown/syntax#backslash
@@ -218,7 +254,95 @@
 			"name": "constant.character.escape.backslash",
 			"match": "\\\\[\\\\`\\*_{}\\[\\]\\(\\)#\\+-\\.!]",
 		},
-		/* Bundles */
+
+		/* INLINE: Inline Code */
+		"inline-code":  {
+			"name": "markup.raw.inline.markdown",
+			"begin": "(`)(.*?)",
+			"end": "(\\1)",
+			"captures": {
+				"1": { "name": "punctuation.definition.raw.inline.markdown" },
+			},
+		},
+
+		/* INLINE: Critic Markup */
+		"critic-markup": {
+			"patterns": [
+				{ "include": "#addition" },
+				{ "include": "#deletion" },
+				{ "include": "#substitution" },
+				{ "include": "#comment" },
+				{ "include": "#highlight" },
+			]
+		},
+		"addition": {
+			"name": "meta.addition.criticmarkup",
+			"match": "({\\+\\+)(.*?)(\\+\\+})",
+			"captures": {
+				"1": { "name": "punctuation.definition.inserted.criticmarkup" },
+				"2": { "name": "markup.inserted.criticmarkup" },
+				"3": { "name": "punctuation.definition.inserted.criticmarkup" }
+			},
+		},
+		"deletion": {
+			"name": "meta.deletion.criticmarkup",
+			"match": "({--)(.*?)(--})",
+			"captures": {
+				"1": { "name": "punctuation.definition.deleted.criticmarkup" },
+				"2": { "name": "markup.deleted.criticmarkup" },
+				"3": { "name": "punctuation.definition.deleted.criticmarkup" }
+			},
+		},
+		"substitution": {
+			"name": "meta.substitution.criticmarkup",
+			"match": "({~~)(.+?)(~>)(.+?)(~~})",
+			"captures": {
+				"1": { "name": "punctuation.definition.changed.criticmarkup" },
+				"2": { "name": "markup.changed.criticmarkup" },
+				"3": { "name": "punctuation.definition.changed.criticmarkup" },
+				"4": { "name": "markup.changed.criticmarkup" },
+				"5": { "name": "punctuation.definition.changed.criticmarkup" }
+			},
+		},
+		"comment": {
+			"name": "meta.comment.criticmarkup",
+			"match": "({>>)(.*?)(<<})",
+			"captures": {
+				"1": { "name": "punctuation.definition.comment.criticmarkup" },
+				"2": { "name": "markup.comment.criticmarkup" },
+				"3": { "name": "punctuation.definition.comment.criticmarkup" }
+			},
+		},
+		"highlight": {
+			"name": "meta.highlight.criticmarkup",
+			"match": "({==)(.*?)(==})(?={>>.*?<<})",
+			"captures": {
+				"1": { "name": "punctuation.definition.highlight.criticmarkup" },
+				"2": { "name": "markup.highlight.criticmarkup" },
+				"3": { "name": "punctuation.definition.highlight.criticmarkup" }
+			},
+		},
+
+		/* INLINE: Tag */
+		"tag": {
+			/* Source: https://github.com/alehandrof/MarkDo */
+			"patterns": [
+				{ "include": "#at-tag" },
+				{ "include": "#hash-tag" },
+			]
+		},
+		"at-tag": {
+			/* Example: #important */
+			"name": "color.green markup.hash.tag.markdo",
+			"match": "(?<=^|\\s)(#)[\\w\\d-]+",
+		},
+		"hash-tag": {
+			/* Example: @work */
+			"name": "color.cyan at.tag.markdo",
+			"match": "(?<=^|\\s)(@)[\\w\\d-]+",
+		},
+
+		/* Legacy stuff I haven't processed, yet. */
 		"etcetera": {
 			"patterns": [
 				/*{
@@ -257,16 +381,6 @@
 					"comment": "+2011-11-11 x2012-12-12",
 				},
 				{
-					"name": "color.red hash.tag.markdo",
-					"match": "(?<=^|\\s)(#)[\\w\\d-]+",
-					"comment": "#important",
-				},
-				{
-					"name": "color.green at.tag.markdo",
-					"match": "(?<=^|\\s)(@)[\\w\\d-]+",
-					"comment": "@work",
-				},
-				{
 					"name": "color.blue markup.underline.link.email.markdown",
 					"match": "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
 					// from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
@@ -293,46 +407,6 @@
 					},
 					"comment": "[[Search for this in Goto Anywhere]]"
 				},
-				/**
-				 * START Critic Markup
-				 * Copy & pasted from the official package
-				 */
-				{
-					"comment": "Editorial Substitution",
-					"match": "\\{~~(.*?)~~\\}",
-					"name": "string.substitution"
-				},
-				{
-					"comment": "Editorial Addition",
-					"match": "\\{\\+\\+(.*?)\\+\\+[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}",
-					"name": "string.addition"
-				},
-				{
-					"comment": "Editorial Deletion",
-					"match": "\\{\\-\\-(.*?)\\-\\-[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}",
-					"name": "string.deletion"
-				},
-				{
-					"highlight": "Editorial Highlight",
-					"match": "\\{\\{(.*?)[ \\t]*(\\[(.*?)\\])?[ \\t]*\\}\\}",
-					"name": "string.highlight"
-				},
-				{
-					"comment": "Editorial Mark",
-					"match": "\\{>>(.*?)<<\\}",
-					"name": "string.comment"
-				}
-				/* END Critic Markup */
-			]
-		},
-		"inline": {
-			"patterns": [
-				{ "include": "#backslash-escape" },
-				{ "include": "#bold" },
-				{ "include": "#italic" },
-				{ "include": "#inline-link" },
-				{ "include": "#inline-reference-link" },
-				{ "include": "etcetera" },
 			]
 		},
 	},
