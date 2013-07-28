@@ -39,11 +39,11 @@
 
 		"block": {
 			"patterns": [
+				{ "include": "#list" },
 				{ "include": "#code" },
 				{ "include": "#heading" },
 				{ "include": "#horizontal-rule"},
 				{ "include": "#blockquote" },
-				{ "include": "#list" },
 				{ "include": "#link-definition" },
 				{ "include": "#paragraph"},
 			]
