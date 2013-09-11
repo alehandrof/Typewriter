@@ -1,6 +1,7 @@
 {
 	"name": "Markdown (Typewriter)",
 	"author": "Alex Armstrong (@alehandrof)",
+	"uuid": "ac344730-1a2b-11e3-8ffd-0800200c9a66",
 	"scopeName": "text.html.markdown",
 	"fileTypes": [
 		/**
@@ -39,10 +40,10 @@
 
 		"block": {
 			"patterns": [
+				{ "include": "#horizontal-rule"},
 				{ "include": "#list" },
 				{ "include": "#code" },
 				{ "include": "#heading" },
-				{ "include": "#horizontal-rule"},
 				{ "include": "#blockquote" },
 				{ "include": "#link-definition" },
 				{ "include": "#paragraph"},
@@ -89,7 +90,7 @@
 				"1": { "name": "punctuation.definition.heading.markdown" },
 			},
 			"end": "(\\s+#+)?(?=\\n)",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [ { "include": "#inline" } ]
 		},
 
 		/* BLOCK: List */
@@ -102,16 +103,25 @@
 		},
 		"task-list": {
 			/**
-			 * Support: underline, hyphen, asterisk
+			 * Source: GFM
 			 */
 			"name": "markup.list.task.markdown",
-			"begin": "^\\s*([-\\+\\*])\\s+(\\[[ xX]\\])",
+			"begin": "^\\s*([-\\+\\*])\\s+(?=\\[[ xX]\\])",
 			"captures": {
 				"1": { "name": "punctuation.definition.list.task.markdown" },
-				"2": { "name": "punctuation.definition.list.task.checkbox.markdown" },
 			},
 			"end": "(\\n|$)",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [
+				{
+					"name": "punctuation.definition.list.task.checkbox.complete.markdown",
+					"match": "\\G\\[[xX]\\]",
+				},
+				{
+					"name": "punctuation.definition.list.task.checkbox.incomplete.markdown",
+					"match": "\\G\\[ \\]",
+				},
+				{ "include": "#inline" },
+			]
 		},
 		"unordered-list": {
 			/**
@@ -123,7 +133,7 @@
 				"1": { "name": "punctuation.definition.list.unordered.markdown" },
 			},
 			"end": "(\\n|$)",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [ { "include": "#inline" } ]
 		},
 		"ordered-list": {
 			/**
@@ -136,12 +146,12 @@
 				"1": { "name": "punctuation.definition.list.ordered.markdown" },
 			},
 			"end": "(\\n|$)",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [ { "include": "#inline" } ]
 		},
 
 		/* BLOCK: Horizontal Rule */
 		"horizontal-rule": {
-			"name": "meta.separator.markdown",
+			"name": "markup.separator.markdown",
 			"match": "^(\\s*[_\\-\\*]\\s*){3,}$",
 			"comment": "*** or --- or ___ or somesuch",
 		},
@@ -167,7 +177,7 @@
 				"1": { "name": "punctuation.definition.markup.quote.markdown" },
 			},
 			"end": "(\\n|$)",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [ { "include": "#inline" } ]
 		},
 
 		/* BLOCK: Paragraph */
@@ -175,7 +185,7 @@
 			"name": "meta.paragraph.markdown",
 			"begin": "^",
 			"end": "\\n",
-			"patterns": [ { "include": "#inline" }, ]
+			"patterns": [ { "include": "#inline" } ]
 		},
 
 		/* INLINE Elements - - - - - - - - - - - - - - - - - - - - - */
@@ -186,10 +196,15 @@
 				{ "include": "#inline-code" },
 				{ "include": "#bold" },
 				{ "include": "#italic" },
+				{ "include": "#strikethrough" },
 				{ "include": "#inline-link" },
 				{ "include": "#inline-reference-link" },
+				{ "include": "#link-url"},
+				{ "include": "#link-email"},
 				{ "include": "#critic-markup" },
+				{ "include": "#valid-markdown" },
 				{ "include": "#etcetera" },
+				{ "include": "text.html.basic" },
 			]
 		},
 
@@ -217,6 +232,20 @@
 				"1": { "name": "punctuation.definition.italic.markdown" },
 			},
 			"patterns": [ { "include": "#inline" } ],
+		},
+
+		/* INLINE: Strikethrough */
+		"strikethrough":  {
+			"name": "markup.strikethrough.markdown",
+			"begin": "(\\~\\~|__)(.*?)",
+			"end": "(\\1)",
+			"captures": {
+				"1": { "name": "punctuation.definition.strikethrough.markdown" },
+			},
+			/**
+			 * This should be included, if real strikethrough is implemented.
+			 */
+			// "patterns": [ { "include": "#inline" } ],
 		},
 
 		/* INLINE: Inline Link, incl. images */
@@ -258,11 +287,31 @@
 		/* INLINE: Inline Code */
 		"inline-code":  {
 			"name": "markup.raw.inline.markdown",
-			"begin": "(`)(.*?)",
+			"begin": "(`{1,2})(.*?)",
 			"end": "(\\1)",
 			"captures": {
 				"1": { "name": "punctuation.definition.raw.inline.markdown" },
 			},
+		},
+
+		/* INLINE: URL Link */
+		"link-url": {
+			/* Example
+			"name": "markup.underline.link.url.markdown",
+			"match": "(https?:\\/\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.\\-\\?=&#\\+]*)*\\/?",
+			/**
+			 * regex from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+			 * - minus support for ` `
+			 * - plus support for `?`, `=`, `&`, `#`, '+'
+			 * - plus escaped `-`
+			 */
+		},
+
+		/* INLINE: Email Link */
+		"link-email": {
+			"name": "markup.underline.link.email.markdown",
+			"match": "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
+			// regex from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
 		},
 
 		/* INLINE: Critic Markup */
@@ -276,6 +325,7 @@
 			]
 		},
 		"addition": {
+			/* Example: {++additon++} */
 			"name": "meta.addition.criticmarkup",
 			"match": "({\\+\\+)(.*?)(\\+\\+})",
 			"captures": {
@@ -285,6 +335,7 @@
 			},
 		},
 		"deletion": {
+			/* Example: {--deletion--} */
 			"name": "meta.deletion.criticmarkup",
 			"match": "({--)(.*?)(--})",
 			"captures": {
@@ -294,6 +345,7 @@
 			},
 		},
 		"substitution": {
+			/* Example: {~~changes~>substitution~~} */
 			"name": "meta.substitution.criticmarkup",
 			"match": "({~~)(.+?)(~>)(.+?)(~~})",
 			"captures": {
@@ -305,6 +357,7 @@
 			},
 		},
 		"comment": {
+			/* Example: {>>comment<<} */
 			"name": "meta.comment.criticmarkup",
 			"match": "({>>)(.*?)(<<})",
 			"captures": {
@@ -314,6 +367,7 @@
 			},
 		},
 		"highlight": {
+			/* Example: {==hightlight==}{>>comment<<} */
 			"name": "meta.highlight.criticmarkup",
 			"match": "({==)(.*?)(==})(?={>>.*?<<})",
 			"captures": {
@@ -321,6 +375,15 @@
 				"2": { "name": "markup.highlight.criticmarkup" },
 				"3": { "name": "punctuation.definition.highlight.criticmarkup" }
 			},
+		},
+
+		/* INLINE: Valid Markdown */
+		"valid-markdown": {
+			/**
+			 * Style ampersands, before the HTML syntax declares them invalid
+			 */
+			"name": "valid.markdown",
+			"match": "&",
 		},
 
 		/* INLINE: Tag */
@@ -332,14 +395,20 @@
 			]
 		},
 		"at-tag": {
-			/* Example: #important */
-			"name": "color.green markup.hash.tag.markdo",
+			/* Example: #important or #project(x)*/
+			"name": "color.green markup.tag.hash.markdo",
 			"match": "(?<=^|\\s)(#)[\\w\\d-]+",
+			"patterns": [ { "include": "#tag-optional-value" } ]
 		},
 		"hash-tag": {
-			/* Example: @work */
-			"name": "color.cyan at.tag.markdo",
+			/* Example: @work or @phone(555-1234) */
+			"name": "color.cyan markup.tag.at.markdo",
 			"match": "(?<=^|\\s)(@)[\\w\\d-]+",
+			"patterns": [ { "include": "#tag-optional-value" } ]
+		},
+		"tag-optional-value": {
+			"name": "markup.tag.optional-value.markdo",
+			"match": "\\G(\\([\\w\\d-]+\\))",
 		},
 
 		/* Legacy stuff I haven't processed, yet. */
@@ -350,7 +419,7 @@
 					"match": "(?<=^|\\s)(#|@)(added|done|canceled|cancelled)(:[-\\d]+)?(?=\\s|\\n|$)",
 					"comment": "@added:2011-11-11 #done",
 				},*/
-				{
+				/*{
 					"name": "action.markdo",
 					// "begin": "^\\s*([-\\+\\*]\\s+)?(\\[[ ]\\]\\s+)",
 					"begin": "\\G(\\[[ ]\\]\\s+)",
@@ -374,29 +443,13 @@
 					// "patterns": [
 					//	{ "include": "#inline" },
 					// ]
-				},
+				},*/
 				{
 					"name": "comment meta.tag.markdo",
 					"match": "(?<=^|\\s)(\\+|x|\\.)([-\\d]+)(?=\\s|\\n|$)",
 					"comment": "+2011-11-11 x2012-12-12",
 				},
-				{
-					"name": "color.blue markup.underline.link.email.markdown",
-					"match": "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
-					// from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
-					"comment": "you@tube.com"
-				},
-				{
-					"name": "color.blue markup.underline.link.url.markdown",
-					"match": "(https?:\\/\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.\\-\\?=&#\\+]*)*\\/?",
-					/**
-					 * from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
-					 * - minus support for ` `
-					 * - plus support for `?`, `=`, `&`, `#`, '+'
-					 * - plus escaped `-`
-					 */
-					"comment": "http://youtube.com"
-				},
+
 				{
 					"name": "color.purple markup.underline.link meta.bracket-link.markdown",
 					"match": "(\\[\\[)(.+?)(\\]\\])",
