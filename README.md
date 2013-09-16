@@ -34,10 +34,10 @@ The typewriter modes are controlled by the `typewriter_mode_scrolling` and `type
 ### Notes
 
 - Using the mouse is very difficult in the Scrolling mode and rather counter-productive in the Typing mode. I would like to disable and/or tweak its behavior, but I haven't figured out how to do so.
-- The Typing mode does not work in OSX.
 
 ## Changelog & History
 
+- 0.2.2 - Typing mode now supports OSX as well (It's not well-tested. Let me know if it breaks, please.)
 - 0.2.1 - Renamed settings to `typewriter_mode_scrolling` and `typewriter_mode_typing` so they won't conflict with BufferScroll.
 - 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_scrolling`.
 - 0.1 - Initial release. Typewriter was created upon [my request](http://www.sublimetext.com/forum/viewtopic.php?f=6&t=4806) by [castles\_made\_of\_sand](https://github.com/sublimator/) & [facelessuser](https://github.com/facelessuser).
@@ -45,11 +45,12 @@ The typewriter modes are controlled by the `typewriter_mode_scrolling` and `type
 
 ## Issues/Todo
 
-- Support OSX in Typing mode.
-- Mousemaps
+- Mousemaps (Current state: researching)
 	- Disable mouse during the Typing mode.
 	- Disable click & drag for selection during Scrolling mode.
 - Typewriter Typing is _kind of_ a hack. A more pythonesque approach would probably be preferable.
+- Add Markdown syntax (Current state: rough draft)
+- Add color scheme designed for prose/long text (Current state: near complete)
 
 
 ## Alternatives
