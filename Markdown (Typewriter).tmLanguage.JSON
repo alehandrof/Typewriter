@@ -46,6 +46,7 @@
 				{ "include": "#heading" },
 				{ "include": "#blockquote" },
 				{ "include": "#link-definition" },
+				{ "include": "#table" },
 				{ "include": "#paragraph"},
 			]
 		},
@@ -82,6 +83,19 @@
 				// { "include": "#setex-heading" },
 				{ "include": "#atx-heading" },
 			]
+		},
+		"setex-heading": {
+			"name": "markup.heading.markdown",
+			// "match": "(test).*(====)",
+			"begin": "^(test)",
+			"end": "(=)(?=\\n)",
+			// "begin": "^(\\w+?)\\n$^=",
+			// "end": "^(=+)(?=\\n)",
+			"captures": {
+				"1": { "name": "markup.deleted.criticmarkup" },
+				"2": { "name": "punctuation.definition.heading.markdown" },
+			},
+			// "patterns": [ { "include": "#inline" } ]
 		},
 		"atx-heading": {
 			"name": "markup.heading.markdown",
@@ -188,6 +202,45 @@
 			"patterns": [ { "include": "#inline" } ]
 		},
 
+		/* BLOCK: Table */
+		"table": {
+			"patterns": [
+				{ "include": "#grid-table" },
+			]
+		},
+		"grid-table": {
+			"name": "color.green markup.table.markdown",
+			"begin": "^(\\||\\+)",
+			"captures": {
+				"1": { "name": "color.red" },
+			},
+			// "end": "(?=\\n)",
+			"end": "(?=(\\1)$)",
+			"patterns": [
+				// { "include": "#table-separator" },
+				// { "include": "#table-cell" }
+			],
+		},
+		"table-separator": {
+			"name": "markup.table.separator.markdown",
+			"begin": "((-|=)+)",
+			"captures": {
+				"1": { "name": "color.yellow" },
+				"2": { "name": "color.red" },
+			},
+			"end": "(?=(\\1)$)",
+		},
+		"table-cell": {
+			"name": "markup.table.cell.markdown",
+			"begin": "\\G(.*?)",
+			"captures": {
+				"1": { "name": "color.blue" },
+				"2": { "name": "color.red" },
+			},
+			"end": "(?=(\\||\\+|$|\\n))",
+			"patterns": [ { "include": "#inline" } ],
+		},
+
 		/* INLINE Elements - - - - - - - - - - - - - - - - - - - - - */
 
 		"inline": {
@@ -204,7 +257,8 @@
 				{ "include": "#critic-markup" },
 				{ "include": "#valid-markdown" },
 				{ "include": "#etcetera" },
-				{ "include": "text.html.basic" },
+				// { "include": "text.html.basic" }, // experimental
+				// { "include": "text.tex" }, // experimental
 			]
 		},
 
@@ -296,7 +350,7 @@
 
 		/* INLINE: URL Link */
 		"link-url": {
-			/* Example
+			/* Example: http://foobar.com */
 			"name": "markup.underline.link.url.markdown",
 			"match": "(https?:\\/\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.\\-\\?=&#\\+]*)*\\/?",
 			/**
@@ -309,9 +363,12 @@
 
 		/* INLINE: Email Link */
 		"link-email": {
+			/* Example: foo@bar.com */
 			"name": "markup.underline.link.email.markdown",
 			"match": "([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})",
-			// regex from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+			/**
+			 * regex from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+			 */
 		},
 
 		/* INLINE: Critic Markup */
@@ -382,7 +439,7 @@
 			/**
 			 * Style ampersands, before the HTML syntax declares them invalid
 			 */
-			"name": "valid.markdown",
+			"name": "markup.other.valid.markdown",
 			"match": "&",
 		},
 
@@ -460,6 +517,11 @@
 					},
 					"comment": "[[Search for this in Goto Anywhere]]"
 				},
+				{
+					/* Example: CHARACTER NAME or PROP or STAGE DIRECTION */
+					"name": "markup.all-caps",
+					"match": "([A-Z][A-Z ]{1,}[A-Z])",
+				}
 			]
 		},
 	},
