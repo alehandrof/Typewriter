@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>author</key>
+	<string>Alex Armstrong</string>
+	<key>name</key>
+	<string>Typewriter (Light)</string>
+	<key>settings</key>
+	<array>
+		<dict>
+			<key>settings</key>
+			<dict>
+				<key>activeGuide</key>
+				<string>#61616166</string>
+				<key>background</key>
+				<string>#f6f6f6</string>
+				<key>bracketContentsForeground</key>
+				<string>#00aeff</string>
+				<key>bracketContentsOptions</key>
+				<string>underline</string>
+				<key>bracketsForeground</key>
+				<string>#00aeff</string>
+				<key>bracketsOptions</key>
+				<string>underline</string>
+				<key>caret</key>
+				<string>#00aeff</string>
+				<key>findHighlight</key>
+				<string>#ffc71977</string>
+				<key>findHighlightForeground</key>
+				<string>#684f00</string>
+				<key>foreground</key>
+				<string>#3d3d3d</string>
+				<key>guide</key>
+				<string>#9e9e9e66</string>
+				<key>gutter</key>
+				<string>#eeeeee</string>
+				<key>gutterForeground</key>
+				<string>#9e9e9e</string>
+				<key>inactiveSelection</key>
+				<string>#9e9e9e33</string>
+				<key>invisibles</key>
+				<string>#f0f</string>
+				<key>lineHighlight</key>
+				<string>#eeeeee</string>
+				<key>selection</key>
+				<string>#00aeff22</string>
+				<key>selectionBorder</key>
+				<string>#00aeff55</string>
+				<key>shadow</key>
+				<string>#9e9e9e</string>
+				<key>shadowWidth</key>
+				<string>4</string>
+				<key>stackGuide</key>
+				<string>#9e9e9e66</string>
+				<key>tagsForeground</key>
+				<string>#00aeff</string>
+				<key>tagsOptions</key>
+				<string>underline</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Black</string>
+			<key>scope</key>
+			<string>string.other.link.inline</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#3d3d3d</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Gray (Light)</string>
+			<key>scope</key>
+			<string>color.gray, comment, meta.diff, meta.diff.header, text.html.markdown punctuation, markup.separator, markup.strikethrough</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#9e9e9e</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Gray (Dark)</string>
+			<key>scope</key>
+			<string>color.darkgray, style.bold, markup.heading, markup.bold, markup.quote markup.italic markup.bold, markup.raw, markup.quote, string.other.link.title, punctuation.definition.list.task.checkbox.incomplete, markup.all-caps</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#616161</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Yellow</string>
+			<key>scope</key>
+			<string>color.yellow, markup.changed</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#b58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Orange</string>
+			<key>scope</key>
+			<string>color.orange, string, variable.parameter, variable.other</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#cb4b16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Red</string>
+			<key>scope</key>
+			<string>color.red, markup.deleted</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#dc322f</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Magenta</string>
+			<key>scope</key>
+			<string>color.magenta, keyword, storage, entity.name.tag, constant.numeric.line-number.find-in-files - match</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#d33682</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Violet</string>
+			<key>scope</key>
+			<string>color.purple, constant.numeric, constant.language, constant.character, constant.other, markup.underline.link.reference, markup.highlight, constant.character.escape</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#6c71c4</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Blue</string>
+			<key>scope</key>
+			<string>color.blue, storage.type, support.function, support.constant, support.type, support.class, entity.name.filename.find-in-files, markup.underline.link, markup.comment</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#268bd2</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Cyan</string>
+			<key>scope</key>
+			<string>color.cyan</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2aa198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Green</string>
+			<key>scope</key>
+			<string>color.green, entity.name.class, entity.other.inherited-class, entity.name.function, entity.other.attribute-name, markup.inserted, string.addition</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#738d00</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Gray (Light)</string>
+			<key>scope</key>
+			<string>bgcolor.gray, markup.strikethrough</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#9e9e9e33</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Gray (Dark)</string>
+			<key>scope</key>
+			<string>bgcolor.darkgray</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#61616133</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Yellow</string>
+			<key>scope</key>
+			<string>bgcolor.yellow</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#b5890033</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Orange</string>
+			<key>scope</key>
+			<string>bgcolor.orange</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#cb4b1633</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Red</string>
+			<key>scope</key>
+			<string>bgcolor.red, invalid</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#dc322f33</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Magenta</string>
+			<key>scope</key>
+			<string>bgcolor.magenta</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#d3368233</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Violet</string>
+			<key>scope</key>
+			<string>bgcolor.violet, invalid.deprecated</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#6c71c433</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Blue</string>
+			<key>scope</key>
+			<string>bgcolor.blue</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#268bd233</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Cyan</string>
+			<key>scope</key>
+			<string>bgcolor.cyan</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#2aa19833</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Reversed Green</string>
+			<key>scope</key>
+			<string>bgcolor.green</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#738d0033</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Bold</string>
+			<key>scope</key>
+			<string>style.bold, markup.heading, markup.bold, markup.quote markup.italic markup.bold, markup.quote markup.bold markup.italic, markup.all-caps</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Italic</string>
+			<key>scope</key>
+			<string>style.italic, storage.type, support.type, support.class, variable.parameter, markup.italic, markup.quote</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Underline</string>
+			<key>scope</key>
+			<string>style.underline, entity.name.class, entity.other.inherited-class, markup.inserted</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>underline</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Bold &amp; Italic</string>
+			<key>scope</key>
+			<string>style.bold.italic markup.bold markup.italic, markup.italic markup.bold, markup.quote markup.bold, markup.heading markup.italic</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic bold</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Italic &amp; Underline</string>
+			<key>scope</key>
+			<string>style.italic.underline, entity.other.inherited-class</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic underline</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>No Font Style (Roman)</string>
+			<key>scope</key>
+			<string>style.none, support.other.variable, markup.quote markup.italic</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+			</dict>
+		</dict>
+	</array>
+	<key>uuid</key>
+	<string>85a626e0-e7e2-11e2-91e2-0800200c9a66</string>
+</dict>
+</plist>
