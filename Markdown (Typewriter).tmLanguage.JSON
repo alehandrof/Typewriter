@@ -7,14 +7,14 @@
 		/**
 		 * Source: http://superuser.com/questions/249436/file-extension-for-markdown-files
 		 */
-		".markdown",
-		".md",
-		".mdown",
-		".mdwn",
-		".mkd",
-		".mkdn",
-		".text",
-		".txt",
+		"md", // the first item becomes the default extension when saving new files
+		"markdown",
+		"mdown",
+		"mdwn",
+		"mkd",
+		"mkdn",
+		"txt",
+		"text",
 	],
 	"patterns": [
 		/**
