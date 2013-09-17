@@ -12,3 +12,8 @@ class TypewriterScrolling(sublime_plugin.EventListener):
             region = sel[0] if len(sel) == 1 else None
             if region != None:
                 view.show_at_center(region)
+                offset = sublime.load_settings('Typewriter.sublime-settings').get('typewriter_mode_scrolling_offset', 0.0)
+                if offset != 0:
+                    cur_v = view.viewport_position()
+                    new_v = (cur_v[0], cur_v[1] + (view.line_height() * offset) )
+                    view.set_viewport_position(new_v)
