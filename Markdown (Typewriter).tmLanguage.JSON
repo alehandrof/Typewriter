@@ -296,7 +296,6 @@
 
 		/* INLINE: URL Link */
 		"link-url": {
-			/* Example
 			"name": "markup.underline.link.url.markdown",
 			"match": "(https?:\\/\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w\\.\\-\\?=&#\\+]*)*\\/?",
 			/**
