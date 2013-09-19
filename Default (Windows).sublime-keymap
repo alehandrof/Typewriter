@@ -68,9 +68,16 @@
 	{ "keys": ["ctrl+shift+j"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // expand_selection
 	{ "keys": ["ctrl+shift+a"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // expand_selection
 
+	/* add line */
+	{ "keys": ["ctrl+shift+enter"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // Add Line Before.sublime-macro
+
 	/* _misspelling */
 	{ "keys": ["ctrl+f6"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // next_misspelling
 	{ "keys": ["ctrl+shift+f6"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // prev_misspelling
+
+	/* swap_line */
+	{ "keys": ["ctrl+shift+up"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // swap_line_up
+	{ "keys": ["ctrl+shift+down"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // swap_line_down
 
 	/* goto */
 	{ "keys": ["ctrl+r"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // goto
@@ -85,12 +92,25 @@
 	{ "keys": ["alt+keypad_minus"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // jump_back
 	{ "keys": ["alt+shift+keypad_minus"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // jump_forward
 
-	/* show_panel */
+	/* show_panel & find & replace &c. (w/o slurp) */
 	{ "keys": ["ctrl+i"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // incremental_find
 	{ "keys": ["ctrl+shift+i"], "command": "do_nothing", "context": [ { "key":" setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // incremental_find
 	{ "keys": ["ctrl+f"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find
 	{ "keys": ["ctrl+h"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // replace
+	{ "keys": ["ctrl+shift+h"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // replace_next
+	{ "keys": ["f3"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_next
+	{ "keys": ["shift+f3"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_prev
+
+	{ "keys": ["ctrl+f3"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_under
+	{ "keys": ["ctrl+shift+f3"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_under_prev
+	{ "keys": ["alt+f3"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_all_under
+
 	{ "keys": ["ctrl+shift+f"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // find_in_files
+	{ "keys": ["f4"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // next_result
+	{ "keys": ["shift+f4"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // prev_result
+
+	/* transpose */
+	{ "keys": ["ctrl+t"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // transpose
 
 	/* bookmarks */
 	{ "keys": ["f2"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }, // next_bookmark
