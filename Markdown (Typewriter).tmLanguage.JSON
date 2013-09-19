@@ -251,7 +251,7 @@
 		/* INLINE: Inline Link, incl. images */
 		"inline-link": {
 			"name": "meta.link.inline.markdown",
-			"match": "(!?\\[)(.*?)(\\]\\()(\\S+)\\s*(\".*?\")?\\s*(\\))",
+			"match": "(!?\\[)(.*?)(\\]\\()(\\S+[^\\)])(\\s*\".*?\"\\s*)?(\\))",
 			"captures": {
 				"1": { "name": "punctuation.definition.link.inline.markdown" },
 				"2": { "name": "string.other.link.inline.markdown" },
