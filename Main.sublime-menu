@@ -1,0 +1,71 @@
+[
+    {
+        "id": "view",
+        "children":
+        [
+            { "caption": "-", "id" : "typewriter"},
+            {
+                "caption": "Typewriter",
+                "children":
+                [
+                    {
+                        "caption": "Toggle All Modes",
+                        "command": "run_macro_file",
+                        "args": { "file": "${packages}/Typewriter/Typewriter Mode.sublime-macro" }
+                    },
+                    {
+                        "caption": "Scrolling Mode",
+                        "command": "toggle_setting",
+                        "args": { "setting": "typewriter_mode_scrolling" },
+                        "checkbox": true
+                    },
+                    {
+                        "caption": "Typing Mode",
+                        "command": "toggle_setting",
+                        "args": { "setting": "typewriter_mode_typing" },
+                        "checkbox": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Typewriter",
+                        "children":
+                        [
+                            {
+                                "command": "open_file",
+                                "args": { "file": "${packages}/Typewriter/Typewriter.sublime-settings" },
+                                "caption": "Typewriter Settings – Default"
+                            },
+                            {
+                                "command": "open_file", "args": { "file": "${packages}/User/Typewriter.sublime-settings" },
+                                "caption": "Typewriter Settings – User"
+                            },
+                            { "caption": "-", "id" : "typewriter"},
+                            {
+                                "command": "open_file",
+                                "args": { "file": "${packages}/Typewriter/Markdown (Typewriter).sublime-settings" },
+                                "caption": "Markdown (Typewriter) Settings – Default"
+                            },
+                            {
+                                "command": "open_file", "args": { "file": "${packages}/User/Markdown (Typewriter).sublime-settings" },
+                                "caption": "Markdown (Typewriter) Settings – User"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
