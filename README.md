@@ -10,16 +10,16 @@ This plugin provides two typewriter-inspired modes for Sublime Text 2 & 3:
 
 ## Installation
 
-You can install Typewriter either manually or through _Package Control_. The latter is preferred as it will update automatically.
+This plugin is available through [Package Control](https://sublime.wbond.net/).
 
-### Package Control
+Select the `Package Control: Install Package` command via the palette and choose the `Typewriter` package.
 
-Typewriter is not available in _Package Control_ by default, you will need to add it first.
+### Manual Install
 
-1. Select the `Package Control: Add Repository` command via the palette and add this repository: `https://github.com/alehandrof/Typewriter`
-2. Select the `Package Control: Install Package` command via the palette and choose the newly-available `Typewriter` package.
+1. Download the latest release from here: <https://github.com/alehandrof/Typewriter/releases/>
+2. Extract it in your Packages folder. (You can find out its location by clicking the `Preferences > Browse Packages…` menu inside Sublime Text.)
 
-### Manually
+-- _or_ --
 
 Clone the repository in your Packages folder: `git clone https://github.com/alehandrof/Typewriter.git`
 
@@ -28,8 +28,10 @@ Clone the repository in your Packages folder: `git clone https://github.com/aleh
 
 The typewriter modes are controlled by the `typewriter_mode_scrolling` and `typewriter_mode_typing` settings. Setting them to `true` enables the modes.
 
-- See the example files provided for ideas on how to use these in settings & keymap files.
-- You can toggle the modes via the Command Palette. (Just search for `typewriter`.)
+- See the files provided for ideas on how to use these in settings & keymap files.
+- You can toggle the modes via the:
+	- Command Palette -- search for `typewriter`
+	- Main Menu menu -- under `View > Typewriter`.
 
 ### Notes
 
@@ -40,6 +42,7 @@ The typewriter modes are controlled by the `typewriter_mode_scrolling` and `type
 
 ## Changelog & History
 
+- 0.2.2 - Added offset option for Scrolling mode (requested by [Luis Martins](https://github.com/lmartins)).
 - 0.2.1 - Renamed settings to `typewriter_mode_scrolling` and `typewriter_mode_typewriter` so they won't conflict with BufferScroll.
 - 0.2 - Added Typing mode for Windows & Linux. `typewriter_mode` renamed `typewriter_scrolling`.
 - 0.1 - Initial release. Typewriter was created upon [my request](http://www.sublimetext.com/forum/viewtopic.php?f=6&t=4806) by [castles\_made\_of\_sand](https://github.com/sublimator/) & [facelessuser](https://github.com/facelessuser).
