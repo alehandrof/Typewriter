@@ -1,0 +1,15 @@
+{
+	/* Auto-Complete Experiments */
+	// "auto_complete": true,
+	// "auto_complete_selector": "text.markdown markup.all-caps",
+	// "auto_complete_triggers": [ { "selector": "text.markdown markup.all-caps", "characters": "Z" } ],
+	/* Main Settings */
+	// "indent_subsequent_lines": false,
+	"extensions":
+	[
+		// ".txt" ".text",
+
+		// Uncomment for Markdown
+		// "md", "markdown", "mdown", "mdwn", "mkd", "mkdn"
+	]
+}
