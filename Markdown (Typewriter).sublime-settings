@@ -5,6 +5,10 @@
 	// "auto_complete_triggers": [ { "selector": "text.markdown markup.all-caps", "characters": "Z" } ],
 	/* Main Settings */
 	// "indent_subsequent_lines": false,
+
+	/* Uncomment to enable Markdown keybindings */
+	// "typewriter_mode_markdown": true,
+
 	"extensions":
 	[
 		// ".txt" ".text",
