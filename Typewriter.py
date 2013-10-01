@@ -6,8 +6,13 @@
 import sublime
 import sublime_plugin
 
+offset = 0.0
+
 
 class TypewriterScrolling(sublime_plugin.EventListener):
+
+    # def on_modified(self, view):
+        # self.center_view(view)
 
     def on_selection_modified(self, view):
         self.center_view(view)

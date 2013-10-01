@@ -137,6 +137,5 @@
 	{ "keys": ["shift+alt+left"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] },
 	{ "keys": ["shift+alt+up"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] },
 	{ "keys": ["shift+alt+right"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] },
-	{ "keys": ["shift+alt+down"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] },
-
+	{ "keys": ["shift+alt+down"], "command": "do_nothing", "context": [ { "key": "setting.typewriter_mode_typing", "operator": "equal", "operand": true } ] }
 ]
