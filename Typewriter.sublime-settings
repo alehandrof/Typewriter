@@ -6,5 +6,8 @@
 	"typewriter_mode_scrolling_offset": 0.0,
 
 	// Enables Typewriter Scrolling
-	"typewriter_mode_typing": false
+	"typewriter_mode_typing": false,
+
+	// Enables Typewriter Scrolling for Sublime Text 2
+	"typewriter_mode_typing_st2": false
 }
