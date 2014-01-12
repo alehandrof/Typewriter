@@ -59,16 +59,23 @@ typing_mode_blocked_commands = [
     "delete_to_mark"
 ]
 
+# During Typing Mode cursor is always at EOF
+def move_cursor_to_eof(view):
+    eof = view.size()
+    sel = view.sel()[0]
+    if sel.a != eof:
+        view.sel().clear()
+        view.sel().add(sublime.Region(eof))
+        view.show(eof)
+
 
 class TypewriterMode(sublime_plugin.EventListener):
 
-    # def on_modified(self, view):
-        # self.center_view(view)
-
     def on_selection_modified(self, view):
-        if view.settings().get('typewriter_mode_typing') == 1:
-            self.end_of_page(view)
-        if view.settings().get('typewriter_mode_scrolling') == 1:
+        settings = view.settings()
+        if settings.get('typewriter_mode_typing') == 1:
+            move_cursor_to_eof(view)
+        if settings.get('typewriter_mode_scrolling') == 1:
             self.center_view(view)
 
     # Center View
@@ -106,20 +113,24 @@ class TypewriterMode(sublime_plugin.EventListener):
             return ("do_nothing")
 
     def block_commands(self, view, cmd, args, blocked_cmds):
-        # print(cmd)
-        # print(args)
-        # print(blocked_cmds)
         for i in blocked_cmds:
             if cmd == i:
                 return (True)
 
-    # Typing Mode is always at end of page
-    def end_of_page(self, view):
-        eof = view.size()
-        sel = view.sel()[0]
-        # print(eof)
-        # print (sel.a)
-        if sel.a != eof:
-            view.sel().clear()
-            view.sel().add(sublime.Region(eof))
-            view.show(eof)
+
+# Typing Mode Command
+class TypewriterTypingToggleCommand(sublime_plugin.TextCommand):
+
+    """
+    Toggle typewriter_mode_typing, placing the cursor at the end of the file when toggling on.
+    """
+
+    def run(self, edit):
+        view = self.view
+        settings = self.view.settings()
+        if settings.get('typewriter_mode_typing') == 0:
+            settings.set('typewriter_mode_typing', 1)
+            move_cursor_to_eof(view)
+            return
+        if settings.get('typewriter_mode_typing') == 1:
+            settings.set('typewriter_mode_typing', 0)
