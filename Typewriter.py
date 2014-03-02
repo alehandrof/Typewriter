@@ -128,9 +128,9 @@ class TypewriterTypingToggleCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
         settings = self.view.settings()
-        if settings.get('typewriter_mode_typing') == 0:
+        if settings.get('typewriter_mode_typing') != 1:
             settings.set('typewriter_mode_typing', 1)
             move_cursor_to_eof(view)
             return
-        if settings.get('typewriter_mode_typing') == 1:
+        else:
             settings.set('typewriter_mode_typing', 0)
