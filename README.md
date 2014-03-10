@@ -3,11 +3,16 @@ Typewriter
 
 This plugin provides two typewriter-inspired modes for Sublime Text 2 & 3\*:
 
-- **Typewriter Scrolling** keeps the view centered on the current line, when there is more than half a screenful of text, à la _iA Writer_, _WriteRoom_ and the like. This mode keeps you from craning your neck to look at the bottom of the screen for hours on end. (If you happen to write for hours on end.)
+- **Typewriter Scrolling** keeps the view centered on the current line, when there is more than half a screenful of text, à la _iA Writer_, _WriteRoom_ and the like.
 
-- **Typewriter Typing** moves your cursor to the end of the file and disabling your cursor keys and all bindings that move the cursor and/or select text, leaving you only with letters, numbers, symbols, <kbd>Backspace</kbd>, <kbd>Delete</kbd> and <kbd>Enter</kbd>. Stay in the flow of writing and don't let your inner editor stifle your verbiage ever again. (Also: experience the joy of not being able to go back and correct your typos.)
+	This mode keeps you from craning your neck to look at the bottom of the screen for hours on end. (If you happen to write for hours on end.)
+
+- **Typewriter Typing** moves your cursor to the end of the file and disables all commands that move the cursor and/or select text, leaving you only with letters, numbers, symbols, Backspace, Delete and Enter.
+
+	Stay in the flow of writing and don't let your inner editor stifle your verbiage ever again. (Also: experience the joy of not being able to go back and correct your typos.)
 
 \* _The ST3 version is much more robust than the ST2 version, which is no longer being maintained._
+
 
 ## Installation
 
@@ -27,16 +32,18 @@ Clone the repository in your Packages folder: `git clone https://github.com/aleh
 
 ## Usage
 
-The typewriter modes are controlled by the `typewriter_mode_scrolling` and `typewriter_mode_typing` settings. Setting them to `true` enables the modes.
+The typewriter modes can be toggled via the command palette. Just search for `typewriter`. There are three commands: one to toggle each mode and one to toggle both modes together.
 
-- See the files provided for ideas on how to use these in settings & keymap files.
-- You can toggle the modes via the:
-	- Command Palette -- search for `typewriter`
+You can use the `typewriter_mode_scrolling` setting to enable or disable the Scrolling mode. For example, I have `"typewriter_mode_scrolling" : true,` in my Distraction Free settings.
+
+The Typing mode needs to be triggered by the `typewriter_typing_toggle` command. In earlier versions, you could also toggle this mode via a setting, but this doesn't work well in the current version.
+
+Note: mouse clicking is disabled in both modes, but you can use the scroll wheel.
 
 
 ## Changelog & History
 
-- **0.3.0** - The new version disables the mouse in both scrolling and typing mode. The typing mode is much more robust. Because he APIs used are only available for ST3, I will no longer be maintaining the much glitchier ST2 version. (It's still available, though.)
+- **0.3.0** - The mouse is now disabled in both Scrolling and Typing mode. The Typing mode now moves the cursor to the end of the file and is much more robust in general. Because the APIs used are only available for ST3, I will no longer be maintaining the much glitchier ST2 version. (It's still available, though.)
 - **0.2.3** - Added offset option for Scrolling mode (requested by [Luis Martins](https://github.com/lmartins)), along with some small fixes & tweaks.
 - **0.2.2** - Typing mode now supports OSX as well.
 - **0.2.1** - Renamed settings to `typewriter_mode_scrolling` and `typewriter_mode_typing` so they won't conflict with BufferScroll.
@@ -46,9 +53,10 @@ The typewriter modes are controlled by the `typewriter_mode_scrolling` and `type
 
 ## Issues/Todo
 
-- Neither mode is designed to work with multiple cursors, though nothing terribly is likely to happen. I need to do some more testing with cloned views as well.
+- Neither mode is designed to work with multiple cursors, though nothing terrible is likely to happen. I need to do some more testing with cloned views as well.
+- Figure out how to toggle Typing mode via setting correctly.
 - Add Markdown syntax (Current state: rough draft)
-- Add color scheme designed for prose/long text (Current state: near complete)
+- ~~Add color scheme designed for prose/long text (Current state: near complete)~~ See: [Writerly](https://github.com/alehandrof/Writerly)
 
 
 ## Alternatives
