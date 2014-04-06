@@ -38,11 +38,14 @@ You can use the `typewriter_mode_scrolling` setting to enable or disable the Scr
 
 The Typing mode needs to be triggered by the `typewriter_typing_toggle` command. In earlier versions, you could also toggle this mode via a setting, but this doesn't work well in the current version.
 
-Note: mouse clicking is disabled in both modes, but you can use the scroll wheel.
+### Warnings
 
+- Mouse clicking is disabled in both modes, but you can use the scroll wheel.
+- For best results in Scrolling mode you should set `"scroll_past_end": true`. (By default it is set to `true` in Windows and Linux, but `false` in OSX.)
 
 ## Changelog & History
 
+- **0.3.1** - Expanded usage warnings
 - **0.3.0** - The mouse is now disabled in both Scrolling and Typing mode. The Typing mode now moves the cursor to the end of the file and is much more robust in general. Because the APIs used are only available for ST3, I will no longer be maintaining the much glitchier ST2 version. (It's still available, though.)
 - **0.2.3** - Added offset option for Scrolling mode (requested by [Luis Martins](https://github.com/lmartins)), along with some small fixes & tweaks.
 - **0.2.2** - Typing mode now supports OSX as well.
@@ -55,6 +58,7 @@ Note: mouse clicking is disabled in both modes, but you can use the scroll wheel
 
 - Neither mode is designed to work with multiple cursors, though nothing terrible is likely to happen. I need to do some more testing with cloned views as well.
 - Figure out how to toggle Typing mode via setting correctly.
+- Per [Issue #6](https://github.com/alehandrof/Typewriter/issues/6), change Scrolling mode to a command that can toggle `scroll_past_end` if needed. 
 - Add Markdown syntax (Current state: rough draft)
 - ~~Add color scheme designed for prose/long text (Current state: near complete)~~ See: [Writerly](https://github.com/alehandrof/Writerly)
 
