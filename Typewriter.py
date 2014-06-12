@@ -6,16 +6,14 @@
 import sublime
 import sublime_plugin
 
-offset = 0.0
 
-scrolling_mode_center_on_commands = [
-    "move"
-]
+plugin_settings = None
 
-scrolling_mode_center_on_next_selection_modified_commands = [
-    "find_next",
-    "find_prev"
-]
+
+def plugin_loaded():
+    global plugin_settings
+    plugin_settings = sublime.load_settings('Typewriter.sublime-settings')
+
 
 typing_mode_blocked_commands = [
     "drag_select",
@@ -92,7 +90,7 @@ class TypewriterMode(sublime_plugin.EventListener):
     def on_post_text_command(self, view, command_name, args):
         if not view.settings().get('typewriter_mode_scrolling'):
             return
-        if command_name in scrolling_mode_center_on_commands:
+        if command_name in plugin_settings.get('scrolling_mode_center_on_commands', []):
             self.center_view(view)
 
     def on_window_command(self, window, command_name, args):
@@ -102,6 +100,10 @@ class TypewriterMode(sublime_plugin.EventListener):
         # we need to center the view on the next selection_modified event.
         if not window.active_view().settings().get('typewriter_mode_scrolling'):
             return
+
+        scrolling_mode_center_on_next_selection_modified_commands = \
+            plugin_settings.get('scrolling_mode_center_on_next_selection_modified_commands', [])
+
         if command_name in scrolling_mode_center_on_next_selection_modified_commands:
             self.center_view_on_next_selection_modified = True
 
@@ -115,19 +117,17 @@ class TypewriterMode(sublime_plugin.EventListener):
         sel = view.sel()
         region = sel[0] if len(sel) == 1 else None
         if region is not None:
-            global offset
-            offset = sublime.load_settings('Typewriter.sublime-settings').get(
-                'typewriter_mode_scrolling_offset', 0.0) * view.line_height()
+            offset = plugin_settings.get('typewriter_mode_scrolling_offset', 0.0) * view.line_height()
             if offset != 0:
                 if offset > (view.viewport_extent()[1] / 2):
                     print(
                         "Typewriter Error: The cursor is outside the viewport! Use a smaller offset value.")
                 else:
                     region = sublime.Region(
-                        self.offset_point(view, region.a), self.offset_point(view, region.b))
+                        self.offset_point(view, region.a, offset), self.offset_point(view, region.b, offset))
             view.show_at_center(region)
 
-    def offset_point(self, view, point):
+    def offset_point(self, view, point, offset):
         vector = list(view.text_to_layout(point))
         vector[1] = vector[1] + offset
         return view.layout_to_text(tuple(vector))
