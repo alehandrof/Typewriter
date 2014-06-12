@@ -59,8 +59,9 @@ typing_mode_blocked_commands = [
     "delete_to_mark"
 ]
 
-# During Typing Mode cursor is always at EOF
+
 def move_cursor_to_eof(view):
+    # During Typing Mode cursor is always at EOF
     eof = view.size()
     sel = view.sel()[0]
     if sel.a != eof:
@@ -82,7 +83,7 @@ class TypewriterMode(sublime_plugin.EventListener):
     def center_view(self, view):
         sel = view.sel()
         region = sel[0] if len(sel) == 1 else None
-        if region != None:
+        if region is not None:
             global offset
             offset = sublime.load_settings('Typewriter.sublime-settings').get(
                 'typewriter_mode_scrolling_offset', 0.0) * view.line_height()
@@ -109,7 +110,7 @@ class TypewriterMode(sublime_plugin.EventListener):
         if view.settings().get('typewriter_mode_typing') == 1:
             blocked = self.block_commands(
                 view, cmd, args, typing_mode_blocked_commands)
-        if blocked == True:
+        if blocked:
             return ("do_nothing")
 
     def block_commands(self, view, cmd, args, blocked_cmds):
