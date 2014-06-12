@@ -8,10 +8,6 @@ import sublime_plugin
 
 offset = 0.0
 
-scrolling_mode_blocked_commands = [
-    "drag_select"
-]
-
 typing_mode_blocked_commands = [
     "drag_select",
     "undo",
@@ -76,8 +72,6 @@ class TypewriterMode(sublime_plugin.EventListener):
         settings = view.settings()
         if settings.get('typewriter_mode_typing') == 1:
             move_cursor_to_eof(view)
-        if settings.get('typewriter_mode_scrolling') == 1:
-            self.center_view(view)
 
     # Center View
     def center_view(self, view):
@@ -104,9 +98,6 @@ class TypewriterMode(sublime_plugin.EventListener):
     # Block Commands
     def on_text_command(self, view, cmd, args):
         blocked = False
-        if view.settings().get('typewriter_mode_scrolling') == 1:
-            blocked = self.block_commands(
-                view, cmd, args, scrolling_mode_blocked_commands)
         if view.settings().get('typewriter_mode_typing') == 1:
             blocked = self.block_commands(
                 view, cmd, args, typing_mode_blocked_commands)
