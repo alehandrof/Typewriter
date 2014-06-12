@@ -8,6 +8,15 @@ import sublime_plugin
 
 offset = 0.0
 
+scrolling_mode_center_on_commands = [
+    "move"
+]
+
+scrolling_mode_center_on_next_selection_modified_commands = [
+    "find_next",
+    "find_prev"
+]
+
 typing_mode_blocked_commands = [
     "drag_select",
     "undo",
@@ -68,10 +77,31 @@ def move_cursor_to_eof(view):
 
 class TypewriterMode(sublime_plugin.EventListener):
 
+    def __init__(self):
+        self.center_view_on_next_selection_modified = False
+
     def on_selection_modified(self, view):
         settings = view.settings()
         if settings.get('typewriter_mode_typing') == 1:
             move_cursor_to_eof(view)
+        if self.center_view_on_next_selection_modified:
+            self.center_view(view)
+            self.center_view_on_next_selection_modified = False
+
+    def on_post_text_command(self, view, command_name, args):
+        if command_name in scrolling_mode_center_on_commands:
+            self.center_view(view)
+
+    def on_window_command(self, window, command_name, args):
+        # This is to work around a bug in Sublime Text 3 wherein on_post_window_command
+        # is not being called. Ideally that is where we should call center_view so that
+        # the view is centered on the new location. Instead, we 'remember' here that
+        # we need to center the view on the next selection_modified event.
+        if command_name in scrolling_mode_center_on_next_selection_modified_commands:
+            self.center_view_on_next_selection_modified = True
+
+    def on_modified(self, view):
+        self.center_view(view)
 
     # Center View
     def center_view(self, view):
