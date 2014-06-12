@@ -4,7 +4,8 @@
 
     // Text commands after which to center the view when in scrolling mode.
     "scrolling_mode_center_on_commands": [
-        "move"
+        "move",
+        "move_to"
     ],
 
     // Center the view the next time the selection is modified after these
