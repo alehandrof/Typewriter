@@ -4,6 +4,7 @@
 
     // Text commands after which to center the view when in scrolling mode.
     "scrolling_mode_center_on_commands": [
+        "smart_cursor",
         "move",
         "move_to"
     ],
