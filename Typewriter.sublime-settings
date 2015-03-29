@@ -2,20 +2,17 @@
 	// Set a non-zero value to offset the center of the scrolling mode by that many lines.
 	"typewriter_mode_scrolling_offset": 0.0,
 
-    // Text commands after which to center the view when in scrolling mode.
-    "scrolling_mode_center_on_commands": [
-        "move",
-        "move_to"
-    ],
+	// Text commands after which to center the view when in scrolling mode.
+	"scrolling_mode_center_on_commands": [
+		"smart_cursor",
+		"move",
+		"move_to"
+	],
 
-    // Center the view the next time the selection is modified after these
-    // commands have run.
-    "scrolling_mode_center_on_next_selection_modified_commands": [
-        "find_next",
-        "find_prev"
-    ]
-
-	// Enables Typewriter Typing
-	// DO NOT USE as of v0.3.0.
-	// "typewriter_mode_typing": false,
+	// Center the view the next time the selection is modified after these
+	// commands have run.
+	"scrolling_mode_center_on_next_selection_modified_commands": [
+		"find_next",
+		"find_prev"
+	]
 }
