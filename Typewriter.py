@@ -6,11 +6,14 @@
 import sublime
 import sublime_plugin
 
-offset = 0.0
 
-scrolling_mode_blocked_commands = [
-    "drag_select"
-]
+plugin_settings = None
+
+
+def plugin_loaded():
+    global plugin_settings
+    plugin_settings = sublime.load_settings('Typewriter.sublime-settings')
+
 
 typing_mode_blocked_commands = [
     "drag_select",
@@ -59,8 +62,9 @@ typing_mode_blocked_commands = [
     "delete_to_mark"
 ]
 
-# During Typing Mode cursor is always at EOF
+
 def move_cursor_to_eof(view):
+    # During Typing Mode cursor is always at EOF
     eof = view.size()
     sel = view.sel()[0]
     if sel.a != eof:
@@ -71,31 +75,59 @@ def move_cursor_to_eof(view):
 
 class TypewriterMode(sublime_plugin.EventListener):
 
+    def __init__(self):
+        self.center_view_on_next_selection_modified = False
+
     def on_selection_modified(self, view):
         settings = view.settings()
         if settings.get('typewriter_mode_typing') == 1:
             move_cursor_to_eof(view)
-        if settings.get('typewriter_mode_scrolling') == 1:
+        if (settings.get('typewriter_mode_scrolling') and
+                self.center_view_on_next_selection_modified):
             self.center_view(view)
+            self.center_view_on_next_selection_modified = False
+
+    def on_post_text_command(self, view, command_name, args):
+        if not view.settings().get('typewriter_mode_scrolling'):
+            return
+        if command_name in plugin_settings.get('scrolling_mode_center_on_commands', []):
+            self.center_view(view)
+
+    def on_window_command(self, window, command_name, args):
+        # This is to work around a bug in Sublime Text 3 wherein on_post_window_command
+        # is not being called. Ideally that is where we should call center_view so that
+        # the view is centered on the new location. Instead, we 'remember' here that
+        # we need to center the view on the next selection_modified event.
+        if not window.active_view().settings().get('typewriter_mode_scrolling'):
+            return
+
+        scrolling_mode_center_on_next_selection_modified_commands = \
+            plugin_settings.get('scrolling_mode_center_on_next_selection_modified_commands', [])
+
+        if command_name in scrolling_mode_center_on_next_selection_modified_commands:
+            self.center_view_on_next_selection_modified = True
+
+    def on_modified(self, view):
+        if not view.settings().get('typewriter_mode_scrolling'):
+            return
+        self.center_view(view)
 
     # Center View
     def center_view(self, view):
         sel = view.sel()
         region = sel[0] if len(sel) == 1 else None
-        if region != None:
-            global offset
-            offset = sublime.load_settings('Typewriter.sublime-settings').get(
-                'typewriter_mode_scrolling_offset', 0.0) * view.line_height()
+        if region is not None:
+            offset = plugin_settings.get('typewriter_mode_scrolling_offset', 0.0) * view.line_height()
             if offset != 0:
                 if offset > (view.viewport_extent()[1] / 2):
                     print(
                         "Typewriter Error: The cursor is outside the viewport! Use a smaller offset value.")
                 else:
                     region = sublime.Region(
-                        self.offset_point(view, region.a), self.offset_point(view, region.b))
+                        self.offset_point(view, region.a, offset), self.offset_point(view, region.b, offset))
             view.show_at_center(region)
 
-    def offset_point(self, view, point):
+    def offset_point(self, view, point, offset):
         vector = list(view.text_to_layout(point))
         vector[1] = vector[1] + offset
         return view.layout_to_text(tuple(vector))
@@ -103,13 +135,10 @@ class TypewriterMode(sublime_plugin.EventListener):
     # Block Commands
     def on_text_command(self, view, cmd, args):
         blocked = False
-        if view.settings().get('typewriter_mode_scrolling') == 1:
-            blocked = self.block_commands(
-                view, cmd, args, scrolling_mode_blocked_commands)
         if view.settings().get('typewriter_mode_typing') == 1:
             blocked = self.block_commands(
                 view, cmd, args, typing_mode_blocked_commands)
-        if blocked == True:
+        if blocked:
             return ("do_nothing")
 
     def block_commands(self, view, cmd, args, blocked_cmds):
