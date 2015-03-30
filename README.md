@@ -40,7 +40,11 @@ You can use the `typewriter_mode_scrolling` setting to enable or disable the Scr
 
 The Typing mode needs to be triggered by the `typewriter_typing_toggle` command. In earlier versions, you could also toggle this mode via a setting, but this doesn't work well in the current version.
 
+### Settings
+
 The scrolling mode should work fine as configured. But there are two settings which allow you to tweak the commands that trigger scrolling mode. Look in the settings file for more details.
+
+You can also use offset the centered line in scrolling mode using the `typewriter_mode_scrolling_offset` setting; positive numbers move the centered line up, while negative ones move it down.
 
 
 ### Warnings
